@@ -1,0 +1,7 @@
+https://fixdate.io/modelo-invitacion/24/css/bootstrap.min.css?v=1678728676
+https://fixdate.io/modelo-invitacion/24/css/slick.css?v=1678728677
+https://fixdate.io/modelo-invitacion/24/css/slick-theme.css?v=1678728677
+https://fixdate.io/modelo-invitacion/24/css/jquery.fancybox.min.css?v=1678728676
+https://fixdate.io/modelo-invitacion/24/css/addEvent.css?v=1678728675
+https://fixdate.io/modelo-invitacion/24/css/style.css?v=1678728677
+https://fixdate.io/modelo-invitacion/24/css/responsive.css?v=1678728676
