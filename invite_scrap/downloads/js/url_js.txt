@@ -1,0 +1,13 @@
+https://fixdate.io/modelo-invitacion/24/langs/js/es-HN.js?v=1678728700
+https://fixdate.io/modelo-invitacion/24/js/jquery-3.5.1.min.js?v=1678728680
+https://fixdate.io/modelo-invitacion/24/../../public/js/jquery.cookie.js?v=1645580925
+https://fixdate.io/modelo-invitacion/24/../../public/js/change-lang.js?v=1645580924
+https://fixdate.io/modelo-invitacion/24/js/waypoint/noframework.waypoints.min.js?v=1678728708
+https://fixdate.io/modelo-invitacion/24/js/parallax.min.js?v=1678728681
+https://fixdate.io/modelo-invitacion/24/js/popper.min.js?v=1678728682
+https://fixdate.io/modelo-invitacion/24/js/bootstrap.min.js?v=1678728680
+https://fixdate.io/modelo-invitacion/24/js/slick.min.js?v=1678728683
+https://fixdate.io/modelo-invitacion/24/js/jquery.fancybox.min.js?v=1678728681
+https://fixdate.io/modelo-invitacion/24/js/scripts.js?v=1678728682
+https://fixdate.io/modelo-invitacion/24/js/lottie_svg.min.js
+

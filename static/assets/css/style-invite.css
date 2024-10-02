@@ -322,6 +322,7 @@ section.portada .content-portada span.fecha{
   font-family: 'DM Serif Display', serif;
   font-size: 28px;
   color: #ddd;
+  text-align: center !important;
 }
 
 section.portada .content-portada span.fecha:before{
@@ -1446,4 +1447,14 @@ footer p a:hover{
   text-decoration:none;
   color:#fff;
   background-color: #BFA880;
+}
+
+
+
+/* ---- MY STYLES ------ */
+
+
+.ampersan-space{
+  margin-bottom:0.5rem;
+  margin-top:1.5rem;
 }
