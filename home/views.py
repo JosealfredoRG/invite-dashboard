@@ -7,3 +7,6 @@ def index(request):
 
     # Page from the theme 
     return render(request, 'index.html')
+
+def invite_view(request):
+    return render(request, 'invite.html')

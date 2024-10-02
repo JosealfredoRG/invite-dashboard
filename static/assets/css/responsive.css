@@ -1,0 +1,371 @@
+
+/* Mobile */
+@media only screen and (max-width: 767px)
+{
+
+  #modalMusica .modal-content p{
+    font-size:42px;
+    line-height:40px;
+  }
+
+  #modalMusica .modal-content p + span{
+    font-size:15px
+  }
+
+  #modalMusica .modal-content .boton{
+    margin-bottom:15px;
+  }
+
+  .title{
+    font-size: 35px;
+    padding: 0 15px;
+  }
+
+  .subtitle{
+    font-size: 19px;
+    padding: 0 15px;
+  }
+
+  section.portada .content-portada h1{
+    font-size: 65px;
+    line-height: 50px;
+  }
+
+  section.portada .box-frase-portada p img {
+    width: 15px;
+  }
+
+  section.portada .flecha-continuar {
+    width: 40px;
+    bottom: -15%;
+  }
+
+  section.cuenta-regresiva .reloj-col span.number {
+    font-size: 29px;
+  }
+
+  section.cuenta-regresiva .box-aros{
+    width: 90%;
+  }
+
+  section.portada .box-nombres-fecha-portada h1 span{
+    font-size: 35px;
+    width: 45px;
+    height: 45px;
+    line-height: 40px;
+    margin-bottom: 7px;
+  }
+
+  section.portada .content-portada span.fecha:before{
+    right: -40px;
+  }
+
+  section.portada .content-portada span.fecha:after{
+    left: -40px;
+  }
+
+  section.portada .content-portada{
+    width: 85%;
+  }
+
+  section.portada .content-portada span.fecha{
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  section.portada{
+    padding-bottom: 40%;
+  }
+
+  section.portada .box-frase-portada p{
+    font-size: 20px;
+  }
+
+  section.portada .box-frase-portada{
+    margin-top: 30%;
+  }
+
+  section.cuenta-regresiva .box-aros .box-circulo span.falta{
+    font-size: 35px;
+  }
+
+  section.footer h4 {
+    font-size: 55px;
+    line-height: 45px;
+    margin-bottom: 30px;
+  }
+
+  section.footer h4 span{
+    font-size: 30px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+  }
+
+  section.footer .col-acciones-footer ul {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    margin-top: 30px;
+    line-height: 15px;
+    font-size: 15px;
+  }
+
+  section.cuenta-regresiva .reloj-col span.time {
+    font-size: 18px;
+  }
+
+  section.portada .portada-flor-izq-sup{
+    width: 33%;
+  }
+
+  section.portada img.portada-flor-der-inf{
+    width: 30%;
+  }
+
+  section.cuenta-regresiva .box-aros .box-circulo{
+    padding: 28px;
+  }
+
+  section.ceremonia-fiesta .col-ceremonia h3, section.ceremonia-fiesta .col-fiesta h3 {
+    padding: 8px 30px;
+    font-size: 25px;
+  }
+
+  section.ceremonia-fiesta .col-oculta h3 {
+    padding: 8px 10px;
+    font-size: 22px;
+  }
+
+  section.ceremonia-fiesta .col-ceremonia .anim-anillos, section.ceremonia-fiesta .anim-fiesta{
+    width: 55%;
+  }
+
+  section.portada img.portada-flor-izq-inf{
+    width: 25%;
+    bottom: -25%;
+  }
+
+  section.portada .box-nombres-fecha-portada h1 span {
+    top: 0px;
+  }
+
+  section.instagram{
+    padding-top: 35%;
+    padding-bottom: 50%;
+  }
+
+  section.instagram .hashtag {
+    font-size: 27px;
+  }
+
+  section.footer{
+    padding-bottom: 20%;
+    padding-top: 15%;
+  }
+
+  section.regalos{
+    padding-top: 90px;
+    padding-bottom: 25%;
+  }
+
+  section.fiesta{
+    padding-top: 25%;
+    padding-bottom: 35%;
+  }
+
+  section.ceremonia-fiesta{
+    padding-bottom: 35%;
+  }
+  
+  section.galeria{
+    padding-top: 70px;
+  }
+
+  #modalMapa .modal-header .modal-title{
+    font-size: 23px;
+  }
+
+  section.portada .portada-flor-der-inf{
+    bottom: 35%;
+    width: 20%;
+  }
+
+  section.portada .portada-flor-izq-inf {
+    bottom: -30%;
+    width: 30%;
+  }
+
+  section.regalos .regalos-flor-der {
+    bottom: 16%;
+    width: 26%;
+  }
+
+  section.ceremonia-fiesta{
+    background-image: none;
+  }
+
+  #controlador-musica{
+    top: initial;
+    bottom:0;
+    right: 0;
+  }
+
+  .music-anim-icon{
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+  }
+
+  .flags-laguages {
+    padding: 0;
+  }
+
+  #modal-lang .close {
+    right: 25px;
+  }
+
+}
+
+
+
+/* De tablet a Desktop */
+@media only screen and (min-width: 992px)
+{
+
+  /* Modal asistencia */
+
+  #modalAsistencia .modal-content{
+    border: none;
+    background: none;
+    text-align: center;
+    max-width: 800px;
+    height: 580px;
+    padding: 12% 24%;
+    background: url('../img/img_modal01.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-position-x: 54%;
+  }
+
+  #modalAsistencia .modal-body{
+    padding: 1rem 1.5rem;
+  }
+
+
+  #modalAsistencia .close{
+    top: 0;
+    right: 25px;
+  }
+  
+  #modalAsistencia .img-top-modal img{
+    margin-top: -28%;
+  }
+
+
+
+  /* Modal sugerir cancion */
+
+  #modalSugerirCancion .modal-content{
+    border: none;
+    background: none;
+    text-align: center;
+    max-width: 800px;
+    height: 580px;
+    padding: 12% 24%;
+    background: url('../img/img_modal01.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-position-x: 54%;
+  }
+
+  #modalSugerirCancion .modal-body{
+    padding: 1rem 1.5rem;
+  }
+
+
+  #modalSugerirCancion .close{
+    top: 0;
+    right: 25px;
+  }
+  
+  #modalSugerirCancion .img-top-modal img{
+    margin-top: -28%;
+  }
+
+
+
+  /* Modal Responsive */
+
+  .modal-responsive .modal-content{
+    border: none;
+    background: none;
+    text-align: center;
+    max-width: 800px;
+    height: 580px;
+    padding: 12% 24%;
+    background: url('../img/img_modal01.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-position-x: 54%;
+  }
+
+  .modal-responsive .modal-body{
+    padding: 1rem 1.5rem;
+  }
+
+
+  .modal-responsive .close{
+    top: 0;
+    right: 25px;
+  }
+  
+  .modal-responsive .img-top-modal img{
+    margin-top: -28%;
+  }
+
+  /* ----- */
+
+
+  
+  .content-fotos .shadow-left{
+    display: block;
+    position: absolute;
+    left: 0;
+    z-index: 999;
+    height: 150%;
+    width: 6%;
+    background: url('../img/img_sombraGaleria_izq.svg') left center no-repeat;
+    top:-27%
+  }
+
+  .content-fotos .shadow-right{
+    display: block;
+    position: absolute;
+    right: 0;
+    z-index: 999;
+    height: 150%;
+    width: 6%;
+    background: url('../img/img_sombraGaleria_der.svg') right center repeat-y;
+    top:-27%
+  }
+
+
+
+  /* Responsive Modal */
+
+  #idModal .modal-body {
+    padding: 1rem 1.5rem;
+    overflow-y: auto;
+    max-width: 83%;
+    margin-left: 31px;
+    margin-bottom: 75px;
+    padding-right: 10px;
+  }
+
+  /* ---- */
+
+}
