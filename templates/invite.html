@@ -101,8 +101,11 @@
         <div class="box-frase-portada">
           <p>
             <img src="{% static 'assets/img/invite/comilla-apertura.svg' %}" alt="">
+            {% if guest %}
+            hola {{ guest.name }}
+            {% endif %}
 
-            Todos somos mortales, <br> hasta el primer beso y la segunda copa de vino
+            El amor nos ha llevado a este momento mágico. <br/>Los invitamos a ser testigos de nuestra promesa de amor eterno
             <img src="{% static 'assets/img/invite/comilla-cierre.svg' %}" alt="">
           </p>
         </div>
@@ -195,7 +198,7 @@
           <div class="info-box">
             <h6>Día</h6>
             <p>Sábado 21 de Diciembre  - 4:00 PM</p>
-            <a href="vintage.html#" class="boton addeventatc">
+            <a href="vintage.html#" class="fw-bold boton addeventatc">
               <span class="nameBtn">Agendar</span>
 
               <span class="start">2024-12-21 16:00:00</span>
@@ -235,7 +238,7 @@
 
           <div class="info-box">
             <h6>Día</h6>
-            <p>Sábado 21 de Diciembre  - 7:00 PM</p>
+            <p>Sábado 21 de Diciembre  - 6:00 PM</p>
             <a href="vintage.html#" class="boton addeventatc">
               <span class="nameBtn">Agendar</span>
 
@@ -248,13 +251,13 @@
 
           <div class="info-box">
             <h6>Lugar</h6>
-            <p>Parque Juana Lainez</p>
+            <p>Parque Cerro Juana Lainez</p>
             <a href="vintage.html#" data-evento="Fiesta" class="boton confirmar-asistencia">Confirmar asistencia</a>
           </div>
 
           <div class="info-box">
             <h6>Dirección</h6>
-            <p>Parque Juana Lainez, Tegucigalpa.</p>
+            <p>Parque Cerro Juana Lainez, Tegucigalpa.</p>
             <a href="vintage.html#" data-evento="Fiesta" class="boton modal-como-llegar">¿Cómo llegar?</a>
           </div>
 
@@ -283,8 +286,8 @@
 
       <div class="content-galeria">
 
-        <h2 class="title">Retratos de Nuestro Amor</h2>
-        <p class="subtitle">Un minuto, un segundo, un instante que queda en la eternidad</p>
+        <h2 class="title">Galería</h2>
+        <h3 class="subtitle">Nuestros momentos más especiales, capturados con amor para compartirlos contigo.</h3>
 
         <div class="anim-galeria"></div>
 
@@ -1046,16 +1049,14 @@
       <div class="modal-body">
 
         <!-- Copiar IBAN/CBU -->
-        <!-- <p style="display: inline">Si deseas regalarnos algo más que tu hermosa presencia...</p> <br>
+         <p  style="color: #957a4c;" class="subtitle">Tu presencia en nuestro gran día es el mejor regalo que podríamos recibir. Si deseas contribuir de alguna manera especial, agradeceríamos un detalle monetario para ayudarnos a construir nuestro futuro juntos.</p> <br>
 
-        <p id="iban" style="display: inline" data-iban="Contenido modal regalos">
-          Contenido modal regalos        </p> <br><br>
+        <p id="iban" style="display: inline" class="subtitle" data-iban="724581801">
+         Efectivo o transferencia a cuenta de BAC</p> <br><br>
 
-        <a id="copy-iban" class="link" href="#">Copiar IBAN 💕</a> <br>
-        
-        <p id="iban-msj"></p> -->
+        <a id="copy-iban" class="link" href="#">Copiar N° Cuenta 💕</a> <br>
+        <p id="iban-msj" class="subtitle"></p>
 
-        Contenido modal regalos
       </div>
 
       <div class="modal-footer">
@@ -1130,7 +1131,7 @@
   
 
     // Cuenta regresiva
-    var fechaCuentaRegresiva = "12/21/2024 21:33:20";
+    var fechaCuentaRegresiva = "12/21/2024 16:00:00";
 
     // Mapas
     // Recepcion
@@ -2210,7 +2211,7 @@
 
     		$('body').on('click', '#copy-iban', function(e) {
 
-          let textoCopiado = lang_textoCopiado;
+          let textoCopiado = "N° de cuenta Copiado!";
 
       		e.preventDefault();
 

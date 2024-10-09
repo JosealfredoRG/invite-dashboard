@@ -53,9 +53,9 @@ class RelatedTo(models.Model):
 
 class Guest(models.Model):
     name = models.CharField(max_length=255)
-    phone = models.CharField(max_length=15)
-    email = models.EmailField()
-    additional_guests_amount = models.PositiveIntegerField(default=0)
+    phone = models.CharField(max_length=15,  blank=True, null=True)
+    email = models.EmailField( blank=True, null=True)
+    additional_guests_amount = models.PositiveIntegerField(default=1)
     invitation_link = models.URLField(max_length=500, blank=True, null=True)
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='guests', null=True, blank=True)
     category = models.ForeignKey(GuestCategory, on_delete=models.SET_NULL, null=True)

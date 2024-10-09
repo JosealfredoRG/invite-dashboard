@@ -9,5 +9,12 @@ django-admin-atlantis==1.0.3
 whitenoise==6.5.0
 gunicorn==21.2.0
 
+# handling the excel
+pandas
+openpyxl
+
+#wha messages
+twilio
+
 # psycopg2-binary
 # mysqlclient

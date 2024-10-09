@@ -15,10 +15,10 @@ class GuestAdmin(admin.ModelAdmin):
 
 @admin.register(GuestCategory)
 class GuestCategoryAdmin(admin.ModelAdmin):
-    list_display = ('category_name',)
+    list_display = ('id', 'category_name')
     search_fields = ('category_name',)
 
 @admin.register(RelatedTo)
 class RelatedToAdmin(admin.ModelAdmin):
-    list_display = ('related_name',)
+    list_display = ('id', 'related_name',)
     search_fields = ('related_name',)

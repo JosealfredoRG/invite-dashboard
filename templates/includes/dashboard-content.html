@@ -7,12 +7,8 @@
             <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
                 <div>
                     <h2 class="text-white pb-2 fw-bold">Inicio</h2>
-                    <h5 class="text-white op-7 mb-2"></h5>
+                    <h5 class="text-white op-7 mb-2">Metricas de los eventos</h5>
                 </div>
-                {% comment %} <div class="ml-md-auto py-2 py-md-0">
-                    <a href="#" class="btn btn-white btn-border btn-round mr-2">Manage</a>
-                    <a href="#" class="btn btn-secondary btn-round">Add Customer</a>
-                </div> {% endcomment %}
             </div>
         </div>
     </div>
@@ -20,38 +16,27 @@
         <div class="row row-card-no-pd mt--2">
             <div class="col-sm-6 col-md-3">
                 <div class="card card-stats card-round">
-                    <div class="card-body ">
-                        <div class="row">
-                            <div class="col-5">
-                                <div class="icon-big text-center">
-                                    <i class="flaticon-chart-pie text-warning"></i>
-                                </div>
-                            </div>
-                            <div class="col-7 col-stats">
-                                <div class="numbers">
-                                    <p class="card-category">Eventos</p>
-                                    <h4 class="card-title">{{events_qty}}</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   <div class="card-body">
+							<div class="row align-items-center">
+								<div class="col-icon">
+									<div class="icon-big text-center icon-info bubble-shadow-small">
+										<i class="flaticon-interface-6"></i>
+									</div>
+								</div>
+								<div class="col col-stats ml-3 ml-sm-0">
+									<div class="numbers">
+										<p class="card-category">Cantidad de Eventos</p>
+										<h4 class="card-title">{{events_qty}}</h4>
+									</div>
+								</div>
+							</div>
+						</div>
                 </div>
             </div>
             <div class="col-sm-6 col-md-3">
                 <div class="card card-stats card-round">
-                    <div class="card-body ">
+                    <div class="card-body">
                         <div class="row">
-                            <div class="col-5">
-                                <div class="icon-big text-center">
-                                    <i class="flaticon-coins text-success"></i>
-                                </div>
-                            </div>
-                            <div class="col-7 col-stats">
-                                <div class="numbers">
-                                    <p class="card-category">Revenue</p>
-                                    <h4 class="card-title">$ 1,345</h4>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -60,34 +45,22 @@
                 <div class="card card-stats card-round">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-5">
-                                <div class="icon-big text-center">
-                                    <i class="flaticon-error text-danger"></i>
-                                </div>
-                            </div>
-                            <div class="col-7 col-stats">
-                                <div class="numbers">
-                                    <p class="card-category">Errors</p>
-                                    <h4 class="card-title">23</h4>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="col-sm-6 col-md-3">
                 <div class="card card-stats card-round">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-5">
-                                <div class="icon-big text-center">
-                                    <i class="flaticon-twitter text-primary"></i>
-                                </div>
-                            </div>
-                            <div class="col-7 col-stats">
-                                <div class="numbers">
-                                    <p class="card-category">Followers</p>
-                                    <h4 class="card-title">+45K</h4>
+                            <div class=" ">
+                                <div class="">
+                                    <div class="ml-md-auto py-2 py-md-0">
+                                        <a href="#" class="btn btn-white btn-border btn-round mr-2">anterior</a>
+                                        <a href="#" class="btn btn-white btn-border btn-round mr-2">siguiente</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +68,7 @@
                 </div>
             </div>
         </div>
-        {{related_to_labels}}
+
         {% if events %}
             {% for event in events %}
                 <div class="row">
@@ -103,37 +76,29 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-head-row">
-                                    <div class="card-title">{{event}}}</div>
+                                    <div class="card-title">{{event}}</div>
 
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="chart-container" style="min-height:375px;">
-                                    <canvas id="guestChart"></canvas>
+                                    <canvas id="guestChart" data-related-to="{{ event.guests_by_related_to }}" data-category="{{ event.guests_by_category }}"></canvas>
                                 </div>
                                 <div id="guestChartLegend"></div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card card-primary">
-                            <div class="card-header">
-                                <div class="card-title">Daily Sales</div>
-                                <div class="card-category">March 25 - April 02</div>
-                            </div>
-                            <div class="card-body pb-0">
-                                <div class="mb-4 mt-2">
-                                    <h1>$4,578.58</h1>
+                       <div >
+                            <div class="card">
+                                <div class="card-body p-3 text-center">
+                                    <div class="h1 m-0 text-primary">{{event.total_guests}}</div>
+                                    <div class="text-muted mb-3">Total Invitados</div>
                                 </div>
-                                <div class="pull-in">
-                                    <canvas id="dailySalesChart"></canvas>
+                                <div class="card-body p-3 text-center">
+                                    <div class="h1 m-0 text-success">{{event.total_confirmed}}</div>
+                                    <div class="text-muted mb-3">Total Confirmados</div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="card card-primary bg-primary-gradient">
-                            <div class="card-body">
-                                <h4 class="mb-1 fw-bold">Tasks Progress</h4>
-                                <div id="task-complete" class="chart-circle mt-4 mb-3"></div>
                             </div>
                         </div>
                     </div>
@@ -185,36 +150,48 @@
 {% block extrajs %}
 	<script >
         var ctx = document.getElementById('guestChart').getContext('2d');
+        var guestChart = document.getElementById('guestChart');
+
+        related = guestChart.getAttribute('data-related-to').replace(/'/g, '"');
+        category = guestChart.getAttribute('data-category').replace(/'/g, '"');
+
+        var data_category = JSON.parse(category);
+        var data_related_to = JSON.parse(related);
+
 
         // Replace these with the actual data from your backend
-        var relatedToLabels = ["Family", "Friends", "Coworkers", "Other"]; // Example categories for related_to
-        var categoryLabels = ["VIP", "Regular", "Special"]; // Example guest categories
+        console.log(typeof data_related_to)
+        console.log(data_category)
 
-        var relatedToData = [50, 30, 20, 10]; // Example data for related_to (number of guests)
-        var categoryData = [60, 40, 20]; // Example data for category (number of guests)
 
-        var relatedToLabels = {{ related_to_labels|safe }};
-        var relatedToData = {{ related_to_counts|safe }};
-        var categoryLabels = {{ category_labels|safe }};
-        var categoryData = {{ category_counts|safe }};
+        var relatedToLabels = data_related_to['related_labels'];
+        var relatedToData = data_related_to['related_data'];
+        var categoryLabels = data_category['category_labels'];
+        var categoryData = data_category['category_data'];
+
+        console.log(relatedToLabels)
+        console.log(relatedToData)
+
 
         var statisticsChart = new Chart(ctx, {
             type: 'bar', // Changed to 'bar' chart
             data: {
-                labels: ["Family", "Friends", "Coworkers", "Other"], // Labels for the x-axis (related_to)
+                labels: categoryLabels, // Labels for the x-axis (related_to)
                 datasets: [{
                     label: "Guests by Related To",
                     backgroundColor: 'rgba(243, 84, 93, 0.4)',
                     borderColor: '#f3545d',
                     borderWidth: 1,
-                    data: relatedToData // Data for related_to
-                }, {
+                    data: categoryData // Data for related_to
+                },
+                /** {
                     label: "Guests by Category",
                     backgroundColor: 'rgba(23, 125, 255, 0.4)',
                     borderColor: '#177dff',
                     borderWidth: 1,
                     data: categoryData // Data for category
-                }]
+                }**/
+                ]
             },
             options: {
                 responsive: true,
@@ -239,7 +216,7 @@
                     xAxes: [{
                         scaleLabel: {
                             display: true,
-                            labelString: 'Related To / Category'
+                            labelString: 'Related To'
                         }
                     }]
                 }

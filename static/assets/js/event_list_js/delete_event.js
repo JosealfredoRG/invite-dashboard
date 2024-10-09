@@ -1,6 +1,5 @@
 $(document).ready(function() {
     $('#deleteRowModal').on('show.bs.modal', function(event) {
-        
         var button = $(event.relatedTarget); // Button that triggered the modal
         var eventName = button.data('event-name'); // Extract info from data-* attributes
         var eventId = button.data('event-id');

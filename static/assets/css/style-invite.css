@@ -1,14 +1,15 @@
 /* Generales */
 
 :root {
-  --color-1: #BFA880;
-  --color-2: #FCF6F1;
-  --color-3: #575756;
+  --color-1: #957a4c;
+  --color-2: #102a4b;
+  --color-3: #957a4c;
   --color-4: #C6D7CF;
-  --color-5: #DFEAE5;
+  --color-5: #102a4b;
   --color-6: #957a4c;
 }
 
+/* --color-6: #c09f4a0 */
 /* font-family: 'DM Serif Display', serif; */
 /* font-family: 'Quicksand', sans-serif; */
 
@@ -87,7 +88,7 @@ background:var(--color-1);
   width: 100%;
   display: inline-block;
   font-family: 'DM Serif Display', serif;
-  color: #333;
+  color: #b49643;
   font-size: 45px;
 }
 
