@@ -57,11 +57,11 @@
   }
 
   section.portada .content-portada span.fecha:before{
-    right: -40px;
+    right: -20px !important;
   }
 
   section.portada .content-portada span.fecha:after{
-    left: -40px;
+    left: -20px !important;
   }
 
   section.portada .content-portada{

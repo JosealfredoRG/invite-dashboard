@@ -1,0 +1,422 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block sidebar_class %}
+	sidebar sidebar-style-2
+{% endblock sidebar_class %}
+{% block content %}
+	<div class="content">
+		<div class="page-inner">
+			<div class="page-header">
+				<ul class="breadcrumbs">
+					<li class="nav-home">
+						<a  href="{% url 'dashboard' %}">
+							<i class="flaticon-home"></i>
+						</a>
+					</li>
+					<li class="separator">
+						<i class="flaticon-right-arrow"></i>
+					</li>
+					<li class="nav-item">
+						<a href="{% url 'event_list' %}" >Eventos</a>
+					</li>
+					<li class="separator">
+						<i class="flaticon-right-arrow"> {{event}} </i>
+					</li>
+				</ul>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<div class="card-title">{{event}}</div>
+						</div>
+						<div class="card-body">
+							<!-- Form del evento -->
+							<form id="eventForm" method="POST"  action="{% url 'event_detail' event.id %}">
+								{% csrf_token %}
+								<div class="row">
+									<!-- Event Name Field -->
+									<div class="col-sm-12">
+										<div class="form-group form-group-default">
+											<label>Nombre del evento</label>
+											<input id="addEventName" name="event_name" type="text" class="form-control" placeholder="fill name" value="{{ event_form.event_name.value|default_if_none:'' }}">
+											{{ event_form.event_name.errors }}
+										</div>
+									</div>
+									<!-- Groom Name Field -->
+									<div class="col-md-6">
+										<div class="form-group form-group-default">
+											<label>Nombre del Novio</label>
+											<input id="addGroomName" name="groom_name" type="text" class="form-control" placeholder="fill groom name" value="{{ event_form.groom_name.value|default_if_none:'' }}">
+											{{ event_form.groom_name.errors }}
+										</div>
+									</div>
+									<!-- Bride Name Field -->
+									<div class="col-md-6">
+										<div class="form-group form-group-default">
+											<label>Nombre de la novia</label>
+											<input id="addBrideName" name="bride_name" type="text" class="form-control" placeholder="fill bride name" value="{{ event_form.bride_name.value|default_if_none:'' }}">
+											{{ event_form.bride_name.errors }}
+										</div>
+									</div>
+									<!-- Ceremony Location Field -->
+									<div class="col-md-6 pr-0">
+										<div class="form-group form-group-default">
+											<label>Ubicación de la ceremonia</label>
+											<input id="addCeremonyLocation" name="ceremony_location" type="text" class="form-control" placeholder="fill ceremony location" value="{{ event_form.ceremony_location.value|default_if_none:'' }}">
+											{{ event_form.ceremony_location.errors }}
+										</div>
+									</div>
+									<!-- Reception Location Field -->
+									<div class="col-md-6">
+										<div class="form-group form-group-default">
+											<label>Ubicación de la recepción</label>
+											<input id="addReceptionLocation" name="reception_location" type="text" class="form-control" placeholder="fill reception location" value="{{ event_form.reception_location.value|default_if_none:'' }}">
+											{{ event_form.reception_location.errors }}
+										</div>
+									</div>
+
+									<!-- Event Date Field -->
+									<div class="col-md-6 pr-0">
+										<div class="form-group form-group-default">
+											<label>Fecha del evento</label>
+											<input id="addEventDate" name="event_date" type="date" class="form-control" value="{{  event_form.event_date.value|date:"Y-m-d" |default_if_none:'' }}">
+											{{ event_form.event_date.errors }}
+										</div>
+									</div>
+									<!-- Observations Field -->
+									<div class="col-sm-12">
+										<div class="form-group form-group-default">
+											<label>Observaciones</label>
+											<textarea id="addObservations" name="observations" class="form-control" placeholder="fill observations">{{ event_form.observations.value|default_if_none:'' }}</textarea>
+											{{ event_form.observations.errors }}
+										</div>
+									</div>
+								</div>
+							</form>
+
+							<!-- tabla de invitados-->
+							<div class="card-header">
+								<div class="d-flex">
+									<div class="mr-auto p-2"><h2 >Invitados</h2></div>
+									<div class="p-2">
+										<button class="btn btn-outline-danger btn-round ml-auto" data-toggle="modal" data-target="#deleteAllGuestModal">
+											<i class="fa fa-plus"></i>
+											Eliminar todos los invitados
+										</button>
+										<button class="btn btn-outline-success btn-round ml-auto" data-toggle="modal" data-target="#loadGuestsModal">
+											<i class="fa fa-plus"></i>
+											Cargar invitados
+										</button>
+										<button class="btn btn-outline-primary btn-round ml-auto" data-toggle="modal" data-target="#addGuestModal">
+											<i class="fa fa-plus"></i>
+											Agregar invitado
+										</button>
+									</div>
+								</div>
+							</div>
+							<div class="table-responsive">
+								<table id="guests-table" class="display table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Relacion</th>
+                                        <th>Vinculo</th>
+                                        <th>Cupos</th>
+                                        <th>Telefono</th>
+                                        <th style="width: 10%">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+									{% if guests %}
+										{% for guest in guests %}
+										<tr>
+											<td>{{ guest.name }}</td>
+											<td>{{ guest.category }}</td>
+											<td>{{ guest.related_to }}</td>
+											<td>{{ guest.additional_guests_amount }}</td>
+											<td>{{ guest.phone }}</td>
+											<td>
+												<div class="form-button-action">
+												<a href="{% url 'invite_guest' guest.pk %}" class="btn btn-success">
+													Send WA
+												</a>
+													<a  href="{% url 'event_detail' event.pk %}"
+														data-toggle="modal"
+														data-target="#addGuestModal"
+														title="Edit guest"
+														guest="{{ guest }}"
+														class="btn btn-link btn-primary btn-lg edit-guest-btn"
+														data-guest-id="{{ guest.id }}"
+														data-event-id="{{ event.id }}"
+														data-guest-name="{{ guest.name }}"
+														data-guest-phone="{{ guest.phone }}"
+														data-guest-email="{{ guest.email }}"
+														data-guest-additional-amount="{{ guest.additional_guests_amount }}"
+														data-guest-category="{{ guest.category.id }}"
+														data-guest-related-to="{{ guest.related_to.id }}"
+														>
+														<i class="fa fa-edit"></i>
+													</a>
+													<button type="button" title="Remove" class="btn btn-link btn-danger"  data-toggle="modal" data-target="#deleteGuestModal" data-guest-id="{{ guest.pk }}" data-guest-name="{{ guest.name }}">
+														<i class="fa fa-times"></i>
+													</button>
+												</div>
+											</td>
+										</tr>
+										{% endfor %}
+									{% else %}
+										<!-- HTML to display if the condition is False -->
+										<tr>
+											<td colspan="5"> <h4 class="text-center"> No se encontraron invitados </h4> </tr>
+										</tr>
+									{% endif %}
+                                </tbody>
+                            </table>
+
+						</div>
+						<div class="card-action text-right">
+							<button class="btn btn-success" form="eventForm">Guardar</button>
+							<a class="btn btn-danger" href="{% url 'event_list' %}">Cancelar</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+<!-- Agregar Invitado Modal -->
+<div class="modal fade" id="addGuestModal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content bg-dark">
+			<div class="modal-header no-bd">
+				<h5 class="modal-title">
+					<span class="fw-mediumbold">
+					Nuevo</span>
+					<span class="fw-light">
+						Invitado
+					</span>
+				</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p class="small">Favor haber validado que se llenaron todos los campos</p>
+				<form method="POST"  action="{% if guest %}{% url 'update_guest' guest.id %}{% else %}{% url 'create_guest' event.pk %}{% endif %}">
+					{% csrf_token %}
+					<div class="row">
+						<!-- Name Field -->
+						<div class="col-sm-12">
+							<div class="form-group form-group-default">
+								<label>Nombre</label>
+								{{ guest_form.name.errors }}
+								<input required id="addGuestName" name="name" type="text" class="form-control" placeholder="Nombre completo" value="{{ guest_form.name.value|default_if_none:'' }}">
+							</div>
+						</div>
+
+						<!-- Phone Field -->
+						<div class="col-sm-12">
+							<div class="form-group form-group-default">
+								<label>Teléfono</label>
+								{{ guest_form.phone.errors }}
+								<input required type="tel" required pattern="[0-9]{8}" id="addGuestPhone" name="phone" type="tel" class="form-control" placeholder="Número de teléfono" value="{{ guest_form.phone.value|default_if_none:'' }}">
+							</div>
+						</div>
+
+						<!-- Email Field -->
+						<div class="col-sm-12">
+							<div class="form-group form-group-default">
+								<label>Email</label>
+								{{ guest_form.email.errors }}
+								<input type="email" required id="addGuestEmail" name="email" type="email" class="form-control" placeholder="Correo electrónico" value="{{ guest_form.email.value|default_if_none:'' }}">
+							</div>
+						</div>
+
+						<!-- Additional Guests Amount Field -->
+						<div class="col-sm-12">
+							<div class="form-group form-group-default">
+								<label>Cantidad de Cupos</label>
+								{{ guest_form.additional_guests_amount.errors }}
+								<input required min="1" id="addGuestAmount" name="additional_guests_amount" type="number" class="form-control" placeholder="Número de invitados adicionales" value="{{ guest_form.additional_guests_amount.value|default_if_none:'' }}">
+							</div>
+						</div>
+
+						<!-- Category Field (ForeignKey) -->
+						<div class="col-sm-12">
+							<div class="form-group form-group-default">
+								<label>Categoría</label>
+								{{ guest_form.category.errors }}
+								<select required id="addGuestCategory" name="category" class="form-control">
+									<option>Seleccione uno</option>
+									{% for category in guest_form.category.field.queryset %}
+										<option value="{{ category.pk }}" {% if guest_form.category.value == category.pk %}selected{% endif %}>{{ category.category_name }}</option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+
+						<!-- related to Field (ForeignKey) -->
+						<div class="col-sm-12">
+							<div class="form-group form-group-default">
+								<label>Vinculo</label>
+								{{ guest_form.related_to.errors }}
+								<select required id="addRelatedTo" name="related_to" class="form-control">
+									<option>Seleccione uno</option>
+									{% for related in guest_form.related_to.field.queryset %}
+										<option value="{{ related.pk }}" {% if guest_form.related_to.value == related.pk %}selected{% endif %}>{{ related.related_name }}</option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal-footer no-bd">
+						{% comment %} <button type="button" id="addRowButton" class="btn btn-primary">Add</button> {% endcomment %}
+						<button type="submit" class="btn btn-primary">Guardar</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Cargar Excel Modal -->
+<div class="modal fade" id="loadGuestsModal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content bg-dark">
+			<div class="modal-header no-bd">
+				<h5 class="modal-title">
+					<span class="fw-mediumbold">
+					Cargar</span>
+					<span class="fw-light">
+						Invitados
+					</span>
+				</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p class="small">Favor Cargar un archivo de excel</p>
+				<form method="POST"  action="{% url 'upload_guests' event.pk %}" enctype="multipart/form-data">
+					{% csrf_token %}
+					 {{ upload_guest_form.as_p }}
+					<div class="modal-footer no-bd">
+						<button type="submit" class="btn btn-primary">Cargar Archivo</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Eliminar Todos Modal -->
+<div class="modal fade" id="deleteAllGuestModal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content bg-dark">
+			<div class="modal-header no-bd">
+				<h5 class="modal-title">
+					<span class="fw-mediumbold">Eliminar todos los invitados</span>
+				</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<h4 id="event-name"></h4>
+				<h4>¿Está seguro de que desea eliminar todos los invitados?</h4>
+				<form method="POST" id="delete-event-form" action="{% url 'delete_all_guest' event.id %}">
+					{% csrf_token %}
+					<input type="hidden" name="event_id" id="event_id" value="">
+					<button type="submit" class="btn btn-danger">Sí, Eliminar</button>
+					<a href="{% url 'event_list' %}" class="btn btn-secondary">Cancelar</a>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Eliminar Modal -->
+<div class="modal fade" id="deleteGuestModal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content bg-dark">
+			<div class="modal-header no-bd">
+				<h5 class="modal-title">
+					<span class="fw-mediumbold">Eliminar invitado</span>
+				</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<h4>¿Está seguro de que desea eliminar a este invitado?</h4>
+				<h4 id="guest-name"></h4>
+				<form method="POST" id="delete-guest-form" action="{% url 'delete_guest' event.id %}">
+					{% csrf_token %}
+					<input type="hidden" name="guest_id" id="guest_id" value="">
+					<button type="submit" class="btn btn-danger">Sí, Eliminar</button>
+					<a href="{% url 'event_list' %}" class="btn btn-secondary">Cancelar</a>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+{% endblock content %}
+{% block extrajs %}
+	<script >
+		$(document).ready(function() {
+			$('#guests-table').DataTable({
+				"pageLength": 5,
+			});
+
+			var editButtons = document.querySelectorAll('.edit-guest-btn');
+
+			editButtons.forEach(function(button) {
+        		button.addEventListener('click', function(event) {
+					// Get guest data from the data attributes
+					var guestId = this.getAttribute('data-guest-id');
+					var eventId = this.getAttribute('data-event-id');
+					var guestName = this.getAttribute('data-guest-name');
+					var guestPhone = this.getAttribute('data-guest-phone');
+					var guestEmail = this.getAttribute('data-guest-email');
+					var guestAmount = this.getAttribute('data-guest-additional-amount');
+					var guestCategory = this.getAttribute('data-guest-category');
+					var guestRelatedTo = this.getAttribute('data-guest-related-to');
+
+					// Set the modal fields with the retrieved data
+					document.getElementById('addGuestName').value = guestName;
+					document.getElementById('addGuestPhone').value = guestPhone;
+					document.getElementById('addGuestEmail').value = guestEmail;
+					document.getElementById('addGuestAmount').value = guestAmount;
+					document.getElementById('addGuestCategory').value = guestCategory;
+					document.getElementById('addRelatedTo').value = guestRelatedTo;
+
+					// Update the form action URL for the editing
+					const form = document.querySelector('#addGuestModal form');
+					form.action = `/edit_guest/${eventId}/${guestId}/`;
+				});
+			});
+
+			 $('#deleteGuestModal').on('show.bs.modal', function(event) {
+				var button = $(event.relatedTarget); // Button that triggered the modal
+				var guestName = button.data('guest-name'); // Extract info from data-* attributes
+				var guestId = button.data('guest-id');
+
+				var modal = $(this);
+				modal.find('#guest-name').text(guestName); // Update the modal's content
+				modal.find('#guest_id').val(guestId); // Set the hidden input with the event ID
+			});
+		});
+
+	</script>
+{% endblock extrajs %}
