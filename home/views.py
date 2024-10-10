@@ -45,9 +45,9 @@ def index(request):
 
         event.guests_by_related_to = {'related_labels': related_labels, 'related_data':related_data}
         event.guests_by_category = {'category_labels': category_labels, 'category_data':category_data}
+
     context = {
         'events': events_with_guests,
-        'category_labels': category_labels,
         'events_qty': events.count(),
     }
 
