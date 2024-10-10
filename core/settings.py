@@ -31,7 +31,7 @@ if not SECRET_KEY:
 DEBUG = 'RENDER' not in os.environ
 
 # HOSTs List
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'losolivoshn.lat', 'www.losolivoshn.lat']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'invite.losolivoshn.lat', 'www.invite.losolivoshn.lat']
 
 # Add here your deployment HOSTS
 CSRF_TRUSTED_ORIGINS = [
