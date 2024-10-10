@@ -31,13 +31,22 @@ if not SECRET_KEY:
 DEBUG = 'RENDER' not in os.environ
 
 # HOSTs List
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'losolivoshn.lat', 'www.losolivoshn.lat']
 
 # Add here your deployment HOSTS
-CSRF_TRUSTED_ORIGINS = ['http://localhost:8000', 'http://localhost:5085', 'http://127.0.0.1:8000', 'http://127.0.0.1:5085']
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8000',
+    'http://localhost:5085',
+    'http://127.0.0.1:8000',
+    'http://127.0.0.1:5085',
+    'http://www.invite.losolivoshn.lat',
+    'https://www.invite.losolivoshn.lat',
+    'https://invite.losolivoshn.lat',
+    'http://invite.losolivoshn.lat',
+    ]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME:    
+if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # Application definition
@@ -99,15 +108,15 @@ DB_PORT     = os.getenv('DB_PORT'     , None)
 DB_NAME     = os.getenv('DB_NAME'     , None)
 
 if DB_ENGINE and DB_NAME and DB_USERNAME:
-    DATABASES = { 
+    DATABASES = {
       'default': {
-        'ENGINE'  : 'django.db.backends.' + DB_ENGINE, 
+        'ENGINE'  : 'django.db.backends.' + DB_ENGINE,
         'NAME'    : DB_NAME,
         'USER'    : DB_USERNAME,
         'PASSWORD': DB_PASS,
         'HOST'    : DB_HOST,
         'PORT'    : DB_PORT,
-        }, 
+        },
     }
 else:
     DATABASES = {
